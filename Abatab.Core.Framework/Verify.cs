@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Abatab.Core.Framework.Verify.cs
+// b230224.1700
+// Copyright (c) A Pretty Cool Program
+
+using System.Collections.Generic;
 using System.IO;
 
 namespace Abatab.Core.Framework

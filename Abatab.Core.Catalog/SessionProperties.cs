@@ -1,4 +1,8 @@
-﻿using ScriptLinkStandard.Objects;
+﻿// Abatab.Core.Catalog.SessionProperties.cs
+// b230224.1700
+// Copyright (c) A Pretty Cool Program
+
+using ScriptLinkStandard.Objects;
 
 namespace Abatab.Core.Catalog
 {
@@ -9,6 +13,7 @@ namespace Abatab.Core.Catalog
         public string AbatabServiceRoot { get; set; }
         public string AbatabDataRoot { get; set; }
         public string LoggerMode { get; set; }
+        public string LoggerTypes { get; set; }
         public string LoggerDelay { get; set; }
         public string AvatarEnvironment { get; set; }
         public string AbatabFallbackUserName { get; set; }
@@ -24,6 +29,7 @@ namespace Abatab.Core.Catalog
         public string RequestOption { get; set; }
         public string AbatabUserName { get; set; }
         public string SessionDataRoot { get; set; }
+        public string TraceLogDirectory { get; set; }
         public string WarningLogDirectory { get; set; }
         public string PublicDataRoot { get; set; }
         public string PublicWarningLogDirectory { get; set; }

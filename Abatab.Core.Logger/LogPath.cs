@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Abatab.Core.Logger.LogPath.cs
+// b230224.1700
+// Copyright (c) A Pretty Cool Program
+
+using System;
 using System.IO;
 
 namespace Abatab.Core.Logger
@@ -10,7 +14,6 @@ namespace Abatab.Core.Logger
             switch (eventType)
             {
                 case "trace":
-                case "tracemsg":
                     return $@"{sessionRoot}\trace\{DateTime.Now:HHmmss_fffffff}-{exeAssembly}-{Path.GetFileName(callPath)}-{callMember}-{callLine}.{eventType}";
 
                 default:
@@ -29,7 +32,5 @@ namespace Abatab.Core.Logger
                     return $@"{sessionRoot}\{DateTime.Now:yyMMdd}.lost";
             }
         }
-
-
     }
 }

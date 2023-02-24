@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Abatab.Core.Session.Build.cs
+// b230224.1700
+// Copyright (c) A Pretty Cool Program
+
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Abatab.Core.Catalog;
@@ -7,20 +11,15 @@ using ScriptLinkStandard.Objects;
 
 namespace Abatab.Core.Session
 {
-    public class Build
+    public static class Build
     {
         public static SessionProperties NewSession(OptionObject2015 sentOptionObject, string scriptParameter, Dictionary<string, string> webConfigContent)
         {
-            if (webConfigContent["DebugglerMode"] == "enabled") /* For testing/debugging only */
-            {
-                LogEvent.Debuggler($@"C:\AbatabData\{webConfigContent["AvatarEnvironment"]}\debuggler\", Assembly.GetExecutingAssembly().GetName().Name, scriptParameter);
-            }
-
             SessionProperties sessionProperties = BuildAbatabDetail(webConfigContent);
             BuildSessionRuntimeDetail(sessionProperties);
-            BuildSessionFrameworkDetail(sessionProperties);
             BuildSessionOptionObjectDetail(sessionProperties, sentOptionObject);
             BuildAbatabUserName(sessionProperties);
+            BuildSessionFrameworkDetail(sessionProperties);
             BuildAbatabRequest(sessionProperties, scriptParameter);
             BuildModProgressNote(sessionProperties, webConfigContent);
             BuildModPrototype(sessionProperties, webConfigContent);
@@ -32,21 +31,17 @@ namespace Abatab.Core.Session
 
         public static SessionProperties BuildAbatabDetail(Dictionary<string, string> webConfigContent)
         {
-            if (webConfigContent["DebugglerMode"] == "enabled")
-            {
-                LogEvent.Debuggler($@"C:\AbatabData\{webConfigContent["AvatarEnvironment"]}\debuggler\", Assembly.GetExecutingAssembly().GetName().Name);
-            }
-
             return new SessionProperties()
             {
-                AbatabMode                                   = webConfigContent["AbatabMode"],
-                AbatabServiceRoot                            = webConfigContent["AbatabServiceRoot"],
-                AbatabDataRoot                               = webConfigContent["AbatabDataRoot"],
-                LoggerMode                                   = webConfigContent["LoggerMode"],
-                LoggerDelay                                  = webConfigContent["LoggerDelay"],
-                AvatarEnvironment                            = webConfigContent["AvatarEnvironment"],
-                AbatabFallbackUserName                       = webConfigContent["AbatabFallbackUserName"],
-                DebugglerMode                                = webConfigContent["DebugglerMode"],
+                AbatabMode             = webConfigContent["AbatabMode"],
+                AbatabServiceRoot      = webConfigContent["AbatabServiceRoot"],
+                AbatabDataRoot         = webConfigContent["AbatabDataRoot"],
+                LoggerMode             = webConfigContent["LoggerMode"],
+                LoggerTypes            = webConfigContent["LoggerTypes"],
+                LoggerDelay            = webConfigContent["LoggerDelay"],
+                AvatarEnvironment      = webConfigContent["AvatarEnvironment"],
+                AbatabFallbackUserName = webConfigContent["AbatabFallbackUserName"],
+                DebugglerMode          = webConfigContent["DebugglerMode"]
             };
         }
 
@@ -54,21 +49,10 @@ namespace Abatab.Core.Session
         {
             LogEvent.Trace(sessionProperties, Assembly.GetExecutingAssembly().GetName().Name);
 
-            sessionProperties.Datestamp          = $"{DateTime.Now:yyMMdd}";
-            sessionProperties.Timestamp          = $"{DateTime.Now:HHmmss}";
+            sessionProperties.Datestamp = $"{DateTime.Now:yyMMdd}";
+            sessionProperties.Timestamp = $"{DateTime.Now:HHmmss}";
         }
 
-        public static void BuildSessionFrameworkDetail(SessionProperties sessionProperties)
-        {
-            LogEvent.Trace(sessionProperties, Assembly.GetExecutingAssembly().GetName().Name);
-
-            sessionProperties.SessionDataRoot           = $@"{sessionProperties.AbatabDataRoot}\{sessionProperties.AvatarEnvironment}\{sessionProperties.Datestamp}\{sessionProperties.AbatabUserName}\{sessionProperties.Timestamp}";
-            sessionProperties.PublicDataRoot            = $@"{sessionProperties.AbatabDataRoot}\public\";
-            sessionProperties.PublicWarningLogDirectory = $@"{sessionProperties.AbatabDataRoot}\public\warnings";
-            sessionProperties.DebugglerLogDirectory     = $@"{sessionProperties.AbatabDataRoot}\{sessionProperties.AvatarEnvironment}\debuggler";
-
-            Framework.Verify.RequiredDirectories(FrameworkComponents.RequiredDirectories(sessionProperties));
-        }
 
         public static void BuildSessionOptionObjectDetail(SessionProperties sessionProperties, OptionObject2015 sentOptionObject)
         {
@@ -86,6 +70,22 @@ namespace Abatab.Core.Session
                 ? sessionProperties.AbatabFallbackUserName
                 : sessionProperties.SentOptionObject.OptionUserId;
         }
+
+        public static void BuildSessionFrameworkDetail(SessionProperties sessionProperties)
+        {
+            LogEvent.Trace(sessionProperties, Assembly.GetExecutingAssembly().GetName().Name);
+
+            sessionProperties.SessionDataRoot           = $@"{sessionProperties.AbatabDataRoot}\{sessionProperties.AvatarEnvironment}\{sessionProperties.Datestamp}\{sessionProperties.AbatabUserName}\{sessionProperties.Timestamp}";
+            sessionProperties.TraceLogDirectory         = $@"{sessionProperties.SessionDataRoot}\trace";
+            sessionProperties.WarningLogDirectory       = $@"{sessionProperties.SessionDataRoot}\warnings";
+            sessionProperties.PublicDataRoot            = $@"{sessionProperties.AbatabDataRoot}\public\";
+            sessionProperties.PublicWarningLogDirectory = $@"{sessionProperties.AbatabDataRoot}\public\warnings";
+            sessionProperties.DebugglerLogDirectory     = $@"{sessionProperties.AbatabDataRoot}\debuggler";
+
+            Framework.Verify.RequiredDirectories(FrameworkComponents.RequiredDirectories(sessionProperties));
+        }
+
+        // TODO - This is where things are broken - 230224 5:15pm
 
         public static void BuildAbatabRequest(SessionProperties sessionProperties, string scriptParameter)
         {

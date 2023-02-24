@@ -1,30 +1,21 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Threading;
+﻿// Abatab.Core.Catalog.SessionDetails.cs
+// b230224.1700
+// Copyright (c) A Pretty Cool Program
+
+using System;
 
 namespace Abatab.Core.Catalog
 {
-    public class SessionDetails
+    public static class SessionDetails
     {
         public static string test(SessionProperties sessionProperties)
         {
-            if (sessionProperties.DebugglerMode == "enabled")
-            {
-                LocalDebuggler($@"{sessionProperties.DebugglerLogDirectory}", Assembly.GetExecutingAssembly().GetName().Name, 10);
-            }
-
+            // TODO - This will be a combo of the header and the body
             return "";
         }
 
         public static string SessionDetailHeader(SessionProperties sessionProperties)
         {
-            if (sessionProperties.DebugglerMode == "enabled")
-            {
-                LocalDebuggler($@"{sessionProperties.DebugglerLogDirectory}", Assembly.GetExecutingAssembly().GetName().Name, 10);
-            }
-
             return Environment.NewLine +
                    $"==============={Environment.NewLine}" +
                    $"Session details{Environment.NewLine}" +
@@ -33,11 +24,6 @@ namespace Abatab.Core.Catalog
 
         public static string SessionDetailBody(SessionProperties sessionProperties)
         {
-            if (sessionProperties.DebugglerMode == "enabled")
-            {
-                LocalDebuggler($@"{sessionProperties.DebugglerLogDirectory}", Assembly.GetExecutingAssembly().GetName().Name, 10);
-            }
-
             return Environment.NewLine +
                    $"Abatab version:               v23.2.0-development+230224.1346{Environment.NewLine}" +
                    $"Abatab mode:                  {sessionProperties.AbatabMode}{Environment.NewLine}" +
@@ -61,6 +47,8 @@ namespace Abatab.Core.Catalog
                    $"Public warning log directory: {sessionProperties.PublicWarningLogDirectory}{Environment.NewLine}" +
                    $"Debuggler log directory:      {sessionProperties.DebugglerLogDirectory}{Environment.NewLine}" +
                    Environment.NewLine;
+
+            // TODO - Eventually re-introduce this stuff.
             //$"============================{Environment.NewLine}" +
             //$"Module details{Environment.NewLine}" +
             //$"============================" +
@@ -75,12 +63,6 @@ namespace Abatab.Core.Catalog
             //$"{BodyOptObjDetail(abatabSession.SentOptObj, "sentOptObj")}{Environment.NewLine}" +
             //$"{BodyOptObjDetail(abatabSession.WorkOptObj, "workerOptObj")}{Environment.NewLine}" +
             //$"{BodyOptObjDetail(abatabSession.FinalOptObj, "finalOptObj")}{Environment.NewLine}";
-        }
-
-        public static void LocalDebuggler(string logDirectory, string exeAssembly, int loggerDelay, [CallerFilePath] string callPath = "", [CallerMemberName] string callMember = "", [CallerLineNumber] int callLine = 0)
-        {
-            Thread.Sleep(loggerDelay);
-            File.WriteAllText($@"{logDirectory}\{exeAssembly}-{Path.GetFileName(callPath)}-{callMember}-{callLine}.debuggler", "");
         }
     }
 }

@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿// Abatab.Core.Catalog.FrameworkComponents.cs
+// b230224.1700
+// Copyright (c) A Pretty Cool Program
+
+using System.Collections.Generic;
 
 namespace Abatab.Core.Catalog
 {
-    public class FrameworkComponents
+    public static class FrameworkComponents
     {
         public static List<string> RequiredDirectories(SessionProperties sessionProperties)
         {
