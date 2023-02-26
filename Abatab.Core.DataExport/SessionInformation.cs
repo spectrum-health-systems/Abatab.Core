@@ -2,20 +2,21 @@
 // b230225.1749
 // Copyright (c) A Pretty Cool Program
 
-using Abatab.Core.Catalog;
+using System;
+using Abatab.Core.Catalog.Definition;
 
 namespace Abatab.Core.DataExport
 {
     public static class SessionInformation
     {
-        public static void ToSessionRoot(SessionProperties sessionProperties)
+        public static void ToSessionRoot(AbSession abSession)
         {
-            DataWriter.LocalFile($@"{sessionProperties.SessionDataRoot}\session.md", Catalog.SessionInformation.BuildSessionInformationFull(sessionProperties));
+            DataWriter.LocalFile($@"{abSession.SessionDataDirectory}\{DateTime.Now:HHmmss.ffffff}-session.md", Catalog.Component.Information.SessionInformationFull(abSession));
         }
 
-        public static void ToDaily(SessionProperties sessionProperties, string filePath)
+        public static void DailyRefresh(AbSession abSession, string filePath)
         {
-            DataWriter.LocalFile($@"{filePath}", Catalog.SessionInformation.BuildSessionInformationFull(sessionProperties));
+            DataWriter.LocalFile($@"{filePath}", Catalog.Component.Information.DailySettingInformation(abSession));
         }
     }
 }

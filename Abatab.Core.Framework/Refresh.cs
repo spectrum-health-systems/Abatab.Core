@@ -1,16 +1,13 @@
-﻿using Abatab.Core.Catalog;
-using Abatab.Core.Catalog.Components;
+﻿using Abatab.Core.Catalog.Definition;
 
 namespace Abatab.Core.Framework
 {
     public class Refresh
     {
-        public static void Daily(SessionProperties sessionProperties)
+        public static void Daily(AbSession abSession)
         {
-            Verify.DirectoriesExist(FrameworkComponents.RequiredDirectories(sessionProperties));
-            Core.DataExport.SessionInformation.ToDaily(sessionProperties, $@"{sessionProperties.AbatabDataRoot}\{sessionProperties.AvatarEnvironment}\Abatab-settings.md");
-
-
+            Verify.DirectoriesExist(Abatab.Core.Catalog.Component.Directories.ForFramework(abSession));
+            Core.DataExport.SessionInformation.DailyRefresh(abSession, $@"{abSession.AbatabDataRoot}\{abSession.AvatarEnvironment}\Abatab current settings.md");
         }
     }
 }

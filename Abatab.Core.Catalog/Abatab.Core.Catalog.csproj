@@ -44,10 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\FrameworkComponents.cs" />
-    <Compile Include="ComponentDetail.cs" />
-    <Compile Include="SessionInformation.cs" />
-    <Compile Include="SessionProperties.cs" />
+    <Compile Include="Component\Directories.cs" />
+    <Compile Include="Component\Information.cs" />
+    <Compile Include="Component\Detail.cs" />
+    <Compile Include="Definition\AbSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +63,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

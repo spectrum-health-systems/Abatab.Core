@@ -4,12 +4,14 @@
 
 using ScriptLinkStandard.Objects;
 
-namespace Abatab.Core.Catalog
+namespace Abatab.Core.Catalog.Definition
 {
-    public class SessionProperties
+    public class AbSession
     {
         // Local settings from Web.config.
         public string AbatabMode { get; set; }
+        public string AbatabVersion { get; set; }
+        public string AbatabBuild { get; set; }
         public string AbatabServiceRoot { get; set; }
         public string AbatabDataRoot { get; set; }
         public string LoggerMode { get; set; }
@@ -28,6 +30,7 @@ namespace Abatab.Core.Catalog
         public string RequestOption { get; set; }
         public string AbatabUserName { get; set; }
         public string SessionDataRoot { get; set; }
+        public string SessionDataDirectory { get; set; }
         public string TraceLogDirectory { get; set; }
         public string WarningLogDirectory { get; set; }
         public string PublicDataRoot { get; set; }
