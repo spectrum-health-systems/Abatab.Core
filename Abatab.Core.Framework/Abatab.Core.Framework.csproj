@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Refresh.cs" />
     <Compile Include="Verify.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -48,6 +49,10 @@
     <ProjectReference Include="..\Abatab.Core.Catalog\Abatab.Core.Catalog.csproj">
       <Project>{1B44E970-AF13-4188-A6EC-449BF42FA32E}</Project>
       <Name>Abatab.Core.Catalog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Abatab.Core.DataExport\Abatab.Core.DataExport.csproj">
+      <Project>{9db81d7f-ba9f-4e59-a63f-b00514ac1f40}</Project>
+      <Name>Abatab.Core.DataExport</Name>
     </ProjectReference>
     <ProjectReference Include="..\Abatab.Core.Utilities\Abatab.Core.Utilities.csproj">
       <Project>{88553c90-6bae-4005-b2cc-fd9a68adc094}</Project>

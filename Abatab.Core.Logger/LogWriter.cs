@@ -1,5 +1,5 @@
-﻿// Abatab.Core.Logger.Writer.cs
-// b230224.1700
+﻿// Abatab.Core.Logger.LogWriter.cs
+// b230225.1749
 // Copyright (c) A Pretty Cool Program
 
 using System.IO;
@@ -9,9 +9,9 @@ namespace Abatab.Core.Logger
 {
     internal static class LogWriter
     {
-        public static void LocalFile(string logPath, string logContent, int loggingDelay)
+        public static void LocalFile(string logPath, string logContent, int loggerDelay)
         {
-            Thread.Sleep(loggingDelay);
+            Thread.Sleep(loggerDelay);
             File.WriteAllText(logPath, logContent);
         }
     }

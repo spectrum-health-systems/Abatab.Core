@@ -1,5 +1,5 @@
 ﻿// Abatab.Core.Session.Build.cs
-// b230224.1700
+// b230225.1749
 // Copyright (c) A Pretty Cool Program
 
 using System;
@@ -29,21 +29,18 @@ namespace Abatab.Core.Session
             return sessionProperties;
         }
 
-        public static SessionProperties BuildAbatabDetail(Dictionary<string, string> webConfigContent)
+        public static SessionProperties BuildAbatabDetail(Dictionary<string, string> webConfigContent) => new SessionProperties()
         {
-            return new SessionProperties()
-            {
-                AbatabMode             = webConfigContent["AbatabMode"],
-                AbatabServiceRoot      = webConfigContent["AbatabServiceRoot"],
-                AbatabDataRoot         = webConfigContent["AbatabDataRoot"],
-                LoggerMode             = webConfigContent["LoggerMode"],
-                LoggerTypes            = webConfigContent["LoggerTypes"],
-                LoggerDelay            = webConfigContent["LoggerDelay"],
-                AvatarEnvironment      = webConfigContent["AvatarEnvironment"],
-                AbatabFallbackUserName = webConfigContent["AbatabFallbackUserName"],
-                DebugglerMode          = webConfigContent["DebugglerMode"]
-            };
-        }
+            AbatabMode             = webConfigContent["AbatabMode"],
+            AbatabServiceRoot      = webConfigContent["AbatabServiceRoot"],
+            AbatabDataRoot         = webConfigContent["AbatabDataRoot"],
+            LoggerMode             = webConfigContent["LoggerMode"],
+            LoggerTypes            = webConfigContent["LoggerTypes"],
+            LoggerDelay            = webConfigContent["LoggerDelay"],
+            AvatarEnvironment      = webConfigContent["AvatarEnvironment"],
+            AbatabFallbackUserName = webConfigContent["AbatabFallbackUserName"],
+            DebugglerMode          = webConfigContent["DebugglerMode"]
+        };
 
         public static void BuildSessionRuntimeDetail(SessionProperties sessionProperties)
         {
@@ -75,17 +72,15 @@ namespace Abatab.Core.Session
         {
             LogEvent.Trace(sessionProperties, Assembly.GetExecutingAssembly().GetName().Name);
 
-            sessionProperties.SessionDataRoot           = $@"{sessionProperties.AbatabDataRoot}\{sessionProperties.AvatarEnvironment}\{sessionProperties.Datestamp}\{sessionProperties.AbatabUserName}\{sessionProperties.Timestamp}";
+            sessionProperties.SessionDataRoot           = $@"{sessionProperties.AbatabDataRoot}\{sessionProperties.AvatarEnvironment}\{sessionProperties.Datestamp}\User\{sessionProperties.AbatabUserName}\{sessionProperties.Timestamp}";
             sessionProperties.TraceLogDirectory         = $@"{sessionProperties.SessionDataRoot}\trace";
             sessionProperties.WarningLogDirectory       = $@"{sessionProperties.SessionDataRoot}\warnings";
             sessionProperties.PublicDataRoot            = $@"{sessionProperties.AbatabDataRoot}\public\";
             sessionProperties.PublicWarningLogDirectory = $@"{sessionProperties.AbatabDataRoot}\public\warnings";
             sessionProperties.DebugglerLogDirectory     = $@"{sessionProperties.AbatabDataRoot}\debuggler";
 
-            Framework.Verify.RequiredDirectories(FrameworkComponents.RequiredDirectories(sessionProperties));
+            //Framework.Verify.DirectoriesExist(FrameworkComponents.RequiredDirectories(sessionProperties));
         }
-
-        // TODO - This is where things are broken - 230224 5:15pm
 
         public static void BuildAbatabRequest(SessionProperties sessionProperties, string scriptParameter)
         {
@@ -94,8 +89,8 @@ namespace Abatab.Core.Session
             string[] parameterComponent = scriptParameter.ToLower().Split('-');
 
             sessionProperties.RequestModule  = parameterComponent[0].Trim().ToLower();
-            sessionProperties.RequestCommand = parameterComponent[2].Trim().ToLower();
-            sessionProperties.RequestAction  = parameterComponent[3].Trim().ToLower();
+            sessionProperties.RequestCommand = parameterComponent[1].Trim().ToLower();
+            sessionProperties.RequestAction  = parameterComponent[2].Trim().ToLower();
 
             if (parameterComponent.Length == 4)
             {
@@ -108,33 +103,46 @@ namespace Abatab.Core.Session
         {
             LogEvent.Trace(sessionProperties, Assembly.GetExecutingAssembly().GetName().Name);
 
-            sessionProperties.ModProgressNote.Mode            = webConfigContent["ModProgressNoteMode"];
-            sessionProperties.ModProgressNote.AuthorizedUsers = webConfigContent["ModProgressNoteAuthorizedUser"];
+            sessionProperties.ModProgressNote = new ModProgressNote
+            {
+                Mode            = webConfigContent["ModProgressNoteMode"],
+                AuthorizedUsers = webConfigContent["ModProgressNoteAuthorizedUsers"]
+            };
         }
 
         private static void BuildModPrototype(SessionProperties sessionProperties, Dictionary<string, string> webConfigContent)
         {
             LogEvent.Trace(sessionProperties, Assembly.GetExecutingAssembly().GetName().Name);
 
-            sessionProperties.ModPrototype.Mode            = webConfigContent["ModProgressNoteMode"];
-            sessionProperties.ModPrototype.AuthorizedUsers = webConfigContent["ModProgressNoteAuthorizedUser"];
+            sessionProperties.ModPrototype = new ModPrototype
+            {
+                Mode            = webConfigContent["ModProgressNoteMode"],
+                AuthorizedUsers = webConfigContent["ModProgressNoteAuthorizedUsers"]
+            };
         }
 
         private static void BuildModQuickMedicationOrder(SessionProperties sessionProperties, Dictionary<string, string> webConfigContent)
         {
             LogEvent.Trace(sessionProperties, Assembly.GetExecutingAssembly().GetName().Name);
 
-            sessionProperties.ModQuickMedicationOrder.Mode                  = webConfigContent["ModQuickMedicationOrderMode"];
-            sessionProperties.ModQuickMedicationOrder.AuthorizedUsers       = webConfigContent["ModQuickMedicationOrderAuthorizedUser"];
-            sessionProperties.ModQuickMedicationOrder.ValidOrderType        = webConfigContent["ModQuickMedicationOrderValidOrderType"];
-            sessionProperties.ModQuickMedicationOrder.DosePercentBoundary   = webConfigContent["ModQuickMedicationOrderDosePercentBoundary"];
-            sessionProperties.ModQuickMedicationOrder.DoseMilligramBoundary = webConfigContent["ModQuickMedicationOrderDoseMilligramBoundary"];
+            sessionProperties.ModQuickMedicationOrder = new ModQuickMedicationOrder
+            {
+                Mode                  = webConfigContent["ModQuickMedicationOrderMode"],
+                AuthorizedUsers       = webConfigContent["ModQuickMedicationOrderAuthorizedUsers"],
+                ValidOrderTypes       = webConfigContent["ModQuickMedicationOrderValidOrderTypes"],
+                DosePercentBoundary   = webConfigContent["ModQuickMedicationOrderDosePercentBoundary"],
+                DoseMilligramBoundary = webConfigContent["ModQuickMedicationOrderDoseMilligramBoundary"]
+            };
         }
+
         private static void BuildModTesting(SessionProperties sessionProperties, Dictionary<string, string> webConfigContent)
         {
             LogEvent.Trace(sessionProperties, Assembly.GetExecutingAssembly().GetName().Name);
 
-            sessionProperties.ModTesting.Mode = webConfigContent["ModTestingMode"];
+            sessionProperties.ModTesting = new ModTesting
+            {
+                Mode = webConfigContent["ModTestingMode"]
+            };
         }
     }
 }

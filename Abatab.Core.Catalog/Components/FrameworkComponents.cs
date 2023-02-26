@@ -1,10 +1,10 @@
-﻿// Abatab.Core.Catalog.FrameworkComponents.cs
-// b230224.1700
+﻿// Abatab.Core.Catalog.Components.FrameworkComponents.cs
+// b230225.1749
 // Copyright (c) A Pretty Cool Program
 
 using System.Collections.Generic;
 
-namespace Abatab.Core.Catalog
+namespace Abatab.Core.Catalog.Components
 {
     public static class FrameworkComponents
     {
@@ -14,6 +14,7 @@ namespace Abatab.Core.Catalog
             {
                 sessionProperties.AbatabDataRoot,
                 sessionProperties.SessionDataRoot,
+                sessionProperties.TraceLogDirectory,
                 sessionProperties.WarningLogDirectory,
                 sessionProperties.PublicDataRoot,
                 sessionProperties.PublicWarningLogDirectory,

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Abatab\src\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrameworkComponents.cs" />
-    <Compile Include="SessionDetails.cs" />
+    <Compile Include="Components\FrameworkComponents.cs" />
+    <Compile Include="ComponentDetail.cs" />
+    <Compile Include="SessionInformation.cs" />
     <Compile Include="SessionProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,6 +55,14 @@
       <Project>{8151D74C-D8A4-43F8-99E7-3CAC9DC06B0E}</Project>
       <Name>ScriptLinkStandard</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Abatab.Core.Utilities\Abatab.Core.Utilities.csproj">
+      <Project>{88553C90-6BAE-4005-B2CC-FD9A68ADC094}</Project>
+      <Name>Abatab.Core.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -51,6 +51,10 @@
       <Project>{1B44E970-AF13-4188-A6EC-449BF42FA32E}</Project>
       <Name>Abatab.Core.Catalog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Abatab.Core.Utilities\Abatab.Core.Utilities.csproj">
+      <Project>{88553C90-6BAE-4005-B2CC-FD9A68ADC094}</Project>
+      <Name>Abatab.Core.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

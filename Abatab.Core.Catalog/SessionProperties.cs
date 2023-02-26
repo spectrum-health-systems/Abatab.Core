@@ -1,5 +1,5 @@
 ﻿// Abatab.Core.Catalog.SessionProperties.cs
-// b230224.1700
+// b230225.1749
 // Copyright (c) A Pretty Cool Program
 
 using ScriptLinkStandard.Objects;
@@ -22,7 +22,6 @@ namespace Abatab.Core.Catalog
         // Runtime settings.
         public string Datestamp { get; set; }
         public string Timestamp { get; set; }
-        public string ScriptParameter { get; set; } //?
         public string RequestModule { get; set; }
         public string RequestCommand { get; set; }
         public string RequestAction { get; set; }
@@ -62,7 +61,7 @@ namespace Abatab.Core.Catalog
     {
         public string Mode { get; set; }
         public string AuthorizedUsers { get; set; }
-        public string ValidOrderType { get; set; }
+        public string ValidOrderTypes { get; set; }
         public string DosePercentBoundary { get; set; }
         public string DoseMilligramBoundary { get; set; }
     }

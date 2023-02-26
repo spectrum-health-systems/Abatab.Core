@@ -1,5 +1,5 @@
 ﻿// Abatab.Core.Logger.LogEvent.cs
-// b230224.1700
+// b230225.1749
 // Copyright (c) A Pretty Cool Program
 
 using System;
@@ -10,17 +10,12 @@ namespace Abatab.Core.Logger
 {
     public static class LogEvent
     {
-        //public static void Debuggler(string logDirectory, string exeAssembly, string logContent = "", [CallerFilePath] string callPath = "", [CallerMemberName] string callMember = "", [CallerLineNumber] int callLine = 0)
-        //{
-        //    var logPath = $@"{logDirectory}\{DateTime.Now:HHmmss_fffffff}-{exeAssembly}-{Path.GetFileName(callPath)}-{callMember}-{callLine}.debuggler";
-
-        //    LogWriter.LocalFile(logPath, logContent, 100);
-        //}
-
         // TODO - Maybe figure out a better way to do this, instead of checking if logging is enabled and then checking to see if the types are correct.
 
         public static void Trace(SessionProperties sessionProperties, string exeAssembly, [CallerFilePath] string callPath = "", [CallerMemberName] string callMember = "", [CallerLineNumber] int callLine = 0)
         {
+            //Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+
             if (sessionProperties.LoggerMode == "enabled")
             {
                 if (sessionProperties.LoggerTypes == "all" || sessionProperties.LoggerTypes.Contains("trace"))
@@ -34,6 +29,8 @@ namespace Abatab.Core.Logger
 
         public static void TraceMsg(SessionProperties sessionProperties, string exeAssembly, string logMsg = "Trace log", [CallerFilePath] string callPath = "", [CallerMemberName] string callMember = "", [CallerLineNumber] int callLine = 0)
         {
+            //Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+
             if (sessionProperties.LoggerMode == "enabled")
             {
                 if (sessionProperties.LoggerTypes == "all" || sessionProperties.LoggerTypes.Contains("trace"))

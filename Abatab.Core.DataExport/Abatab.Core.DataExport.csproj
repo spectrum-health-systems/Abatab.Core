@@ -41,8 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataWriter.cs" />
     <Compile Include="SessionInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abatab.Core.Catalog\Abatab.Core.Catalog.csproj">
+      <Project>{1b44e970-af13-4188-a6ec-449bf42fa32e}</Project>
+      <Name>Abatab.Core.Catalog</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

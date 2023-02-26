@@ -61,6 +61,10 @@
       <Project>{C94AF429-C995-4E3F-9ACF-E989FC95F7EA}</Project>
       <Name>Abatab.Core.Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Abatab.Core.Utilities\Abatab.Core.Utilities.csproj">
+      <Project>{88553C90-6BAE-4005-B2CC-FD9A68ADC094}</Project>
+      <Name>Abatab.Core.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
