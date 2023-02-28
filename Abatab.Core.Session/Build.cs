@@ -7,50 +7,49 @@ using System.Collections.Generic;
 using System.Reflection;
 using Abatab.Core.Catalog.Definition;
 using Abatab.Core.Logger;
-using Abatab.Core.Utilities;
 using ScriptLinkStandard.Objects;
 
 namespace Abatab.Core.Session
 {
     public static class Build
     {
-        public static void NewSession(OptionObject2015 sentOptionObject, string scriptParameter, AbSession abSession, Dictionary<string, string> webConfigContent)
+        public static void NewSession(OptionObject2015 sentOptionObject, string scriptParameter, AbSession abSession)
         {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+            LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
 
-            BuildAbatabDetail(abSession, webConfigContent);
+            //BuildAbatabDetail(abSession);
             BuildSessionRuntimeDetail(abSession);
             BuildSessionOptionObjectDetail(abSession, sentOptionObject);
             BuildAbatabUserName(abSession);
             BuildSessionFrameworkDetail(abSession);
             BuildAbatabRequest(abSession, scriptParameter);
-            BuildModProgressNote(abSession, webConfigContent);
-            BuildModPrototype(abSession, webConfigContent);
-            BuildModQuickMedicationOrder(abSession, webConfigContent);
-            BuildModTesting(abSession, webConfigContent);
+            BuildModProgressNote(abSession);
+            //BuildModPrototype(abSession);
+            //BuildModQuickMedicationOrder(abSession);
+            //BuildModTesting(abSession);
         }
 
-        public static void BuildAbatabDetail(AbSession abSession, Dictionary<string, string> webConfigContent)
+        //public static void BuildAbatabDetail(AbSession abSession, Dictionary<string, string> webConfigContent)
+        //{
+        //    Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+
+        //    abSession.AbatabMode             = webConfigContent["AbatabMode"];
+        //    abSession.AbatabVersion          = webConfigContent["AbatabVersion"];
+        //    abSession.AbatabBuild            = webConfigContent["AbatabBuild"];
+        //    abSession.AbatabServiceRoot      = webConfigContent["AbatabServiceRoot"];
+        //    abSession.AbatabDataRoot         = webConfigContent["AbatabDataRoot"];
+        //    abSession.LoggerMode             = webConfigContent["LoggerMode"];
+        //    abSession.LoggerTypes            = webConfigContent["LoggerTypes"];
+        //    abSession.LoggerDelay            = webConfigContent["LoggerDelay"];
+        //    abSession.AvatarEnvironment      = webConfigContent["AvatarEnvironment"];
+        //    abSession.AbatabFallbackUserName = webConfigContent["AbatabFallbackUserName"];
+        //    abSession.DebugglerMode          = webConfigContent["DebugglerMode"];
+
+        //}
+
+        public static void BuildSessionRuntimeDetail(AbSession abSession)
         {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
-
-            abSession.AbatabMode             = webConfigContent["AbatabMode"];
-            abSession.AbatabVersion          = webConfigContent["AbatabVersion"];
-            abSession.AbatabBuild            = webConfigContent["AbatabBuild"];
-            abSession.AbatabServiceRoot      = webConfigContent["AbatabServiceRoot"];
-            abSession.AbatabDataRoot         = webConfigContent["AbatabDataRoot"];
-            abSession.LoggerMode             = webConfigContent["LoggerMode"];
-            abSession.LoggerTypes            = webConfigContent["LoggerTypes"];
-            abSession.LoggerDelay            = webConfigContent["LoggerDelay"];
-            abSession.AvatarEnvironment      = webConfigContent["AvatarEnvironment"];
-            abSession.AbatabFallbackUserName = webConfigContent["AbatabFallbackUserName"];
-            abSession.DebugglerMode          = webConfigContent["DebugglerMode"];
-
-        }
-
-        public static void BuildSessionRuntimeDetail(Catalog.Definition.AbSession abSession)
-        {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+            LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
 
             abSession.Datestamp = $"{DateTime.Now:yyMMdd}";
             abSession.Timestamp = $"{DateTime.Now:HHmmss}";
@@ -59,24 +58,24 @@ namespace Abatab.Core.Session
 
         public static void BuildSessionOptionObjectDetail(Catalog.Definition.AbSession abSession, OptionObject2015 sentOptionObject)
         {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+            LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
 
             abSession.SentOptionObject   = sentOptionObject;
             abSession.ReturnOptionObject = sentOptionObject.Clone();
         }
 
-        public static void BuildAbatabUserName(Catalog.Definition.AbSession abSession)
+        public static void BuildAbatabUserName(AbSession abSession)
         {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+            LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
 
             abSession.AbatabUserName = string.IsNullOrWhiteSpace(abSession.SentOptionObject.OptionUserId)
                 ? abSession.AbatabFallbackUserName
                 : abSession.SentOptionObject.OptionUserId;
         }
 
-        public static void BuildSessionFrameworkDetail(Catalog.Definition.AbSession abSession)
+        public static void BuildSessionFrameworkDetail(AbSession abSession)
         {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+            LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
 
             abSession.SessionDataRoot           = $@"{abSession.AbatabDataRoot}\{abSession.AvatarEnvironment}\{abSession.Datestamp}";
             abSession.SessionDataDirectory      = $@"{abSession.AbatabDataRoot}\{abSession.AvatarEnvironment}\{abSession.Datestamp}\User\{abSession.AbatabUserName}\{abSession.Timestamp}";
@@ -86,13 +85,13 @@ namespace Abatab.Core.Session
             abSession.PublicWarningLogDirectory = $@"{abSession.AbatabDataRoot}\public\warnings";
             abSession.DebugglerLogDirectory     = $@"{abSession.AbatabDataRoot}\debuggler";
 
-            Abatab.Core.Framework.Verify.DirectoriesExist(Abatab.Core.Catalog.Component.Directories.ForSession(abSession));
+            Framework.Verify.DirectoriesExist(Catalog.Component.Directories.ForSession(abSession));
 
         }
 
-        public static void BuildAbatabRequest(Catalog.Definition.AbSession abSession, string scriptParameter)
+        public static void BuildAbatabRequest(AbSession abSession, string scriptParameter)
         {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+            LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
 
             string[] parameterComponent = scriptParameter.ToLower().Split('-');
 
@@ -107,50 +106,53 @@ namespace Abatab.Core.Session
             }
         }
 
-        private static void BuildModProgressNote(Catalog.Definition.AbSession abSession, Dictionary<string, string> webConfigContent)
+        private static void BuildModProgressNote(AbSession abSession)
         {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+            LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
 
-            abSession.ModProgressNote = new ModProgressNote
+            abSession.ModProgressNote.ServiceChargeCodeFieldId = "51001";
+            abSession.ModProgressNote.ServiceChargeCodesCheck  = new List<string>()
             {
-                Mode            = webConfigContent["ModProgressNoteMode"],
-                AuthorizedUsers = webConfigContent["ModProgressNoteAuthorizedUsers"]
+                "TMH90853",
+                "AOTMH90853"
+            };
+
+            abSession.ModProgressNote.LocationFieldId = "50004";
+            abSession.ModProgressNote.ValidLocations  = new List<string>()
+            {
+                "T110",
+                "T102"
             };
         }
 
-        private static void BuildModPrototype(Catalog.Definition.AbSession abSession, Dictionary<string, string> webConfigContent)
-        {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+        //private static void BuildModPrototype(AbSession abSession, Dictionary<string, string> webConfigContent)
+        //{
+        //    Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
 
-            abSession.ModPrototype = new ModPrototype
-            {
-                Mode            = webConfigContent["ModProgressNoteMode"],
-                AuthorizedUsers = webConfigContent["ModProgressNoteAuthorizedUsers"]
-            };
-        }
+        //    abSession.ModPrototype = new ModPrototype
+        //    {
+        //        Mode            = webConfigContent["ModProgressNoteMode"],
+        //        AuthorizedUsers = webConfigContent["ModProgressNoteAuthorizedUsers"]
+        //    };
+        //}
 
-        private static void BuildModQuickMedicationOrder(Catalog.Definition.AbSession abSession, Dictionary<string, string> webConfigContent)
-        {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+        //private static void BuildModQuickMedicationOrder(AbSession abSession, Dictionary<string, string> webConfigContent)
+        //{
+        //    Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
 
-            abSession.ModQuickMedicationOrder = new ModQuickMedicationOrder
-            {
-                Mode                  = webConfigContent["ModQuickMedicationOrderMode"],
-                AuthorizedUsers       = webConfigContent["ModQuickMedicationOrderAuthorizedUsers"],
-                ValidOrderTypes       = webConfigContent["ModQuickMedicationOrderValidOrderTypes"],
-                DosePercentBoundary   = webConfigContent["ModQuickMedicationOrderDosePercentBoundary"],
-                DoseMilligramBoundary = webConfigContent["ModQuickMedicationOrderDoseMilligramBoundary"]
-            };
-        }
+        //    abSession.ModQuickMedicationOrder = new ModQuickMedicationOrder
+        //    {
+        //        Mode                  = webConfigContent["ModQuickMedicationOrderMode"],
+        //        AuthorizedUsers       = webConfigContent["ModQuickMedicationOrderAuthorizedUsers"],
+        //        ValidOrderTypes       = webConfigContent["ModQuickMedicationOrderValidOrderTypes"],
+        //        DosePercentBoundary   = webConfigContent["ModQuickMedicationOrderDosePercentBoundary"],
+        //        DoseMilligramBoundary = webConfigContent["ModQuickMedicationOrderDoseMilligramBoundary"]
+        //    };
+        //}
 
-        private static void BuildModTesting(Catalog.Definition.AbSession abSession, Dictionary<string, string> webConfigContent)
-        {
-            Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
-
-            abSession.ModTesting = new ModTesting
-            {
-                Mode = webConfigContent["ModTestingMode"]
-            };
-        }
+        //private static void BuildModTesting(AbSession abSession, Dictionary<string)
+        //{
+        //    Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
+        //}
     }
 }

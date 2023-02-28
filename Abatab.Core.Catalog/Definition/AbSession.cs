@@ -2,6 +2,7 @@
 // b230225.1749
 // Copyright (c) A Pretty Cool Program
 
+using System.Collections.Generic;
 using ScriptLinkStandard.Objects;
 
 namespace Abatab.Core.Catalog.Definition
@@ -52,6 +53,10 @@ namespace Abatab.Core.Catalog.Definition
     {
         public string Mode { get; set; }
         public string AuthorizedUsers { get; set; }
+        public string ServiceChargeCodeFieldId { get; set; }
+        public List<string> ServiceChargeCodesCheck { get; set; }
+        public string LocationFieldId { get; set; }
+        public List<string> ValidLocations { get; set; }
     }
 
     public class ModPrototype

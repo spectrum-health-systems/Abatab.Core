@@ -3,7 +3,9 @@
 ## The Debuggler
 
 * The Debuggler is a *very* basic debugging utility.
-* Debuggler logic is in Abatab.Core.Utilities, so you will need a `using Abatab.Core.Utilities;` statement in your class.
+* Debuggler logic is in Abatab.Core.Utilities, so you will need the following using statements:
+    * `using Abatab.Core.Utilities;`
+    * `using System.Reflection;`
 * Debuggler files are written to **"C:\AbatabData\Debuggler\"**, which has to exist prior to using Debuggler.
 
 ### Temporary debugging
