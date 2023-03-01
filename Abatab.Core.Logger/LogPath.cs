@@ -1,5 +1,5 @@
 ﻿// Abatab.Core.Logger.LogPath.cs
-// b230225.1749
+// b---------x
 // Copyright (c) A Pretty Cool Program
 
 using System;
@@ -7,8 +7,10 @@ using System.IO;
 
 namespace Abatab.Core.Logger
 {
+    /// <summary>Summary goes here.</summary>
     internal static class LogPath
     {
+        /// <summary>Summary goes here.</summary>
         public static string Build(string eventType, string sessionRoot, string exeAssembly = "", string callPath = "", string callMember = "", int callLine = 0)
         {
             switch (eventType)
@@ -21,6 +23,7 @@ namespace Abatab.Core.Logger
             }
         }
 
+        /// <summary>Summary goes here.</summary>
         public static string Build(string eventType, string sessionRoot)
         {
             switch (eventType)

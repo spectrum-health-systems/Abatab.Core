@@ -1,10 +1,16 @@
-﻿using System;
+﻿// Abatab.Core.Catalog.Component.Detail.cs
+// b---------x
+// Copyright (c) A Pretty Cool Program
+
+using System;
 using Abatab.Core.Catalog.Definition;
 
 namespace Abatab.Core.Catalog.Component
 {
+    /// <summary>Summary goes here.</summary>
     public static class Detail
     {
+        /// <summary>Summary goes here.</summary>
         public static string AbatabSettingsDetail(AbSession abSession)
         {
             return $"# Abatab Settings{Environment.NewLine}" +
@@ -33,6 +39,7 @@ namespace Abatab.Core.Catalog.Component
                    $"**Request option:** {abSession.RequestOption}  {Environment.NewLine}";
         }
 
+        /// <summary>Summary goes here.</summary>
         public static string AbatabDetailFull(AbSession abSession)
         {
             return $"# Abatab Session{Environment.NewLine}" +
@@ -65,6 +72,7 @@ namespace Abatab.Core.Catalog.Component
                    $"**Request option:** {abSession.RequestOption}  {Environment.NewLine}";
         }
 
+        /// <summary>Summary goes here.</summary>
         public static string ModProgressNoteDetail(AbSession abSession)
         {
             return $"# Progress Note Module{Environment.NewLine}" +
@@ -72,6 +80,7 @@ namespace Abatab.Core.Catalog.Component
                    $"**Progress Note authorized users:** {abSession.ModProgressNote.AuthorizedUsers}  {Environment.NewLine}";
         }
 
+        /// <summary>Summary goes here.</summary>
         public static string ModPrototypeDetail(AbSession abSession)
         {
             return $"# Prototype Module{Environment.NewLine}" +
@@ -79,6 +88,7 @@ namespace Abatab.Core.Catalog.Component
                    $"**Prototype authorized users:** {abSession.ModPrototype.AuthorizedUsers}  {Environment.NewLine}";
         }
 
+        /// <summary>Summary goes here.</summary>
         public static string ModQuickMedicationOrderDetail(AbSession abSession)
         {
             return $"# QuickMedicationOrder Module{Environment.NewLine}" +
@@ -89,18 +99,21 @@ namespace Abatab.Core.Catalog.Component
                    $"**QuickMedicationOrder dose milligram boundry:** {abSession.ModQuickMedicationOrder.DoseMilligramBoundary}  {Environment.NewLine}";
         }
 
+        /// <summary>Summary goes here.</summary>
         public static string ModTestingDetail(AbSession abSession)
         {
             return $"# Testing Module{Environment.NewLine}" +
                    $"**Testing mode:** {abSession.ModTesting.Mode}  {Environment.NewLine}";
         }
 
+        /// <summary>Summary goes here.</summary>
         public static string SentOptionObjectDetail(AbSession abSession)
         {
             return $"## SentOptionObject{Environment.NewLine}" +
                    $"```{abSession.SentOptionObject.ToJson()}```  {Environment.NewLine}";
         }
 
+        /// <summary>Summary goes here.</summary>
         public static string ReturnOptionObjectDetail(AbSession abSession)
         {
             return $"## ReturnOptionObject{Environment.NewLine}" +

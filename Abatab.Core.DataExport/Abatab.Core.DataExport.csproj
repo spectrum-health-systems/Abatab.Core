@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Documentation\Abatab.Core.DataExport-generated.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,6 +55,13 @@
       <Project>{C94AF429-C995-4E3F-9ACF-E989FC95F7EA}</Project>
       <Name>Abatab.Core.Logger</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Documentation\SourceCode.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documentation\Abatab.Core.DataExport.xmldoc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,11 +1,17 @@
-﻿using System.Reflection;
+﻿// Abatab.Core.Framework.Refresh.cs
+// b---------x
+// Copyright (c) A Pretty Cool Program
+
+using System.Reflection;
 using Abatab.Core.Catalog.Definition;
 using Abatab.Core.Logger;
 
 namespace Abatab.Core.Framework
 {
-    public class Refresh
+    /// <summary>Summary goes here.</summary>
+    public static class Refresh
     {
+        /// <summary>Summary goes here.</summary>
         public static void Daily(AbSession abSession)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);

@@ -1,5 +1,5 @@
 ﻿// Abatab.Core.Session.Build.cs
-// b230225.1749
+// b---------x
 // Copyright (c) A Pretty Cool Program
 
 using System;
@@ -11,8 +11,10 @@ using ScriptLinkStandard.Objects;
 
 namespace Abatab.Core.Session
 {
+    /// <summary>Summary goes here.</summary>
     public static class Build
     {
+        /// <summary>Summary goes here.</summary>
         public static void NewSession(OptionObject2015 sentOptionObject, string scriptParameter, AbSession abSession)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
@@ -47,6 +49,7 @@ namespace Abatab.Core.Session
 
         //}
 
+        /// <summary>Summary goes here.</summary>
         public static void BuildSessionRuntimeDetail(AbSession abSession)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
@@ -55,7 +58,7 @@ namespace Abatab.Core.Session
             abSession.Timestamp = $"{DateTime.Now:HHmmss}";
         }
 
-
+        /// <summary>Summary goes here.</summary>
         public static void BuildSessionOptionObjectDetail(Catalog.Definition.AbSession abSession, OptionObject2015 sentOptionObject)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
@@ -64,6 +67,7 @@ namespace Abatab.Core.Session
             abSession.ReturnOptionObject = sentOptionObject.Clone();
         }
 
+        /// <summary>Summary goes here.</summary>
         public static void BuildAbatabUserName(AbSession abSession)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
@@ -73,6 +77,7 @@ namespace Abatab.Core.Session
                 : abSession.SentOptionObject.OptionUserId;
         }
 
+        /// <summary>Summary goes here.</summary>
         public static void BuildSessionFrameworkDetail(AbSession abSession)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
@@ -89,6 +94,7 @@ namespace Abatab.Core.Session
 
         }
 
+        /// <summary>Summary goes here.</summary>
         public static void BuildAbatabRequest(AbSession abSession, string scriptParameter)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
@@ -106,6 +112,7 @@ namespace Abatab.Core.Session
             }
         }
 
+        /// <summary>Summary goes here.</summary>
         private static void BuildModProgressNote(AbSession abSession)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);

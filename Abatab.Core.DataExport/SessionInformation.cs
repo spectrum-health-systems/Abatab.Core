@@ -1,5 +1,5 @@
-﻿// Abatab.Core.DataExport.SessionDetails.cs
-// b230225.1749
+﻿// Abatab.Core.DataExport.SessionInformation.cs
+// b---------x
 // Copyright (c) A Pretty Cool Program
 
 using System;
@@ -9,8 +9,10 @@ using Abatab.Core.Logger;
 
 namespace Abatab.Core.DataExport
 {
+    /// <summary>Summary goes here.</summary>
     public static class SessionInformation
     {
+        /// <summary>Summary goes here.</summary>
         public static void ToSessionRoot(AbSession abSession)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
@@ -18,6 +20,7 @@ namespace Abatab.Core.DataExport
             DataWriter.LocalFile($@"{abSession.SessionDataDirectory}\{DateTime.Now:HHmmss.fffffff}-session.md", Catalog.Component.Information.SessionInformationFull(abSession));
         }
 
+        /// <summary>Summary goes here.</summary>
         public static void DailyRefresh(AbSession abSession, string filePath)
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);

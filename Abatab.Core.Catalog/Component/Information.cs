@@ -1,8 +1,13 @@
-﻿using System;
+﻿// Abatab.Core.Catalog.Component.Information.cs
+// b---------x
+// Copyright (c) A Pretty Cool Program
+
+using System;
 using Abatab.Core.Catalog.Definition;
 
 namespace Abatab.Core.Catalog.Component
 {
+    /// <summary>Class description goes here.</summary>
     public static class Information
     {
         public static string DailySettingInformation(AbSession abSession)

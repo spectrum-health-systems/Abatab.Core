@@ -1,5 +1,5 @@
 ﻿// Abatab.Core.Logger.LogEvent.cs
-// b230225.1749
+// b---------x
 // Copyright (c) A Pretty Cool Program
 
 using System;
@@ -8,10 +8,12 @@ using Abatab.Core.Catalog.Definition;
 
 namespace Abatab.Core.Logger
 {
+    /// <summary>Summary goes here.</summary>
     public static class LogEvent
     {
         // TODO - Maybe figure out a better way to do this, instead of checking if logging is enabled and then checking to see if the types are correct.
 
+        /// <summary>Summary goes here.</summary>
         public static void Trace(AbSession session, string exeAssembly, [CallerFilePath] string callPath = "", [CallerMemberName] string callMember = "", [CallerLineNumber] int callLine = 0)
         {
             //Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
@@ -27,6 +29,7 @@ namespace Abatab.Core.Logger
             }
         }
 
+        /// <summary>Summary goes here.</summary>
         public static void TraceMsg(AbSession session, string exeAssembly, string logMsg = "Trace log", [CallerFilePath] string callPath = "", [CallerMemberName] string callMember = "", [CallerLineNumber] int callLine = 0)
         {
             //Debuggler.WriteLocal(Assembly.GetExecutingAssembly().GetName().Name);
