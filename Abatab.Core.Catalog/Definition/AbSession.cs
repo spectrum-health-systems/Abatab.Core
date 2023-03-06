@@ -129,6 +129,9 @@ namespace Abatab.Core.Catalog.Definition
         public string ServiceChargeCodeFieldId { get; set; }
 
         /// <summary>Summary goes here.</summary>
+        public List<string> ServiceChargeCodePrefixes { get; set; }
+
+        /// <summary>Summary goes here.</summary>
         public List<string> ServiceChargeCodesCheck { get; set; }
 
         /// <summary>Summary goes here.</summary>

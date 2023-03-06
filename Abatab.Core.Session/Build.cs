@@ -117,7 +117,12 @@ namespace Abatab.Core.Session
         {
             LogEvent.Trace(abSession, Assembly.GetExecutingAssembly().GetName().Name);
 
-            abSession.ModProgressNote.ServiceChargeCodeFieldId = "51001";
+            abSession.ModProgressNote.ServiceChargeCodeFieldId  = "51001";
+            abSession.ModProgressNote.ServiceChargeCodePrefixes = new List<string>()
+            {
+                "TMH",
+                "AOTMH"
+            };
             abSession.ModProgressNote.ServiceChargeCodesCheck  = new List<string>()
             {
                 "TMH90853",
